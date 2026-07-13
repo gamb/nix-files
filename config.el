@@ -267,6 +267,12 @@
   :bind
   ("M-o" . consult-buffer-other-window))
 
+(use-package agent-shell
+  :config
+  (require 'agent-shell-anthropic)
+  (setq agent-shell-anthropic-authentication
+        (agent-shell-anthropic-make-authentication :login t)))
+
 (use-package move-dup
   :bind
   (:map move-dup-mode-map

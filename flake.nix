@@ -9,16 +9,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
+    llm-agents.url = "github:numtide/llm-agents.nix";
+    mattpocock-skills = {
+      url = "github:mattpocock/skills";
+      flake = false;
+    };
   };
 
   outputs =
-    { nixpkgs, home-manager, emacs-overlay, ... }:
+    { nixpkgs, home-manager, emacs-overlay, llm-agents, mattpocock-skills, ... }:
     let
       system = "aarch64-darwin";
       pkgs = import nixpkgs {
         inherit system;
         overlays = [
           emacs-overlay.overlays.default
+          llm-agents.overlays.default
           # Workaround direnv issue, thanks to https://github.com/billimek/dotfiles/commit/eed207e535ec8d923ab7ccdec5d10972fe77d800
           # via https://github.com/NixOS/nixpkgs/issues/507531
           (_final: prev: {
@@ -46,8 +52,7 @@
         # the path to your home.nix.
         modules = [ ./home-manager/macbook.nix ];
 
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
+        extraSpecialArgs = { inherit mattpocock-skills; };
       };
     };
 }

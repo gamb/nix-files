@@ -16,6 +16,7 @@
           };
           packageRequires = with epkgs; [ eglot ];
         })
+        agent-shell
         browse-kill-ring
         cape
         clojure-mode
