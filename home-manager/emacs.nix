@@ -1,6 +1,24 @@
-{ configs, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
+let
+  emacsPkg = config.programs.emacs.finalPackage;
+  emacsclient-app = pkgs.callPackage ../packages/emacsclient-app.nix {
+    emacs = emacsPkg;
+    # icon = ../assets/emacsclient.icns; # uncomment to use a custom icon
+  };
+in
 {
+  home.file."Applications/Emacs Client.app".source = emacsclient-app;
+
+  # Launch the daemon from inside Emacs.app rather than bin/emacs, so its
+  # NSBundle resolves to the app and GUI frames get the real Emacs icon
+  # instead of the generic one. Home Manager wraps these args in a
+  # wait4path guard itself, so pass them plain like the upstream module.
+  launchd.agents.emacs.config.ProgramArguments = lib.mkForce [
+    "${emacsPkg}/Applications/Emacs.app/Contents/MacOS/Emacs"
+    "--fg-daemon"
+  ];
+
   programs.emacs = {
     enable = true;
     package = (pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (
