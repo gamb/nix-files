@@ -12,16 +12,12 @@
 
   home.stateVersion = "25.05"; # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
 
-  home.file =
-    {
-      ".claude/CLAUDE.md".source = ../CLAUDE.md;
-    }
-    // lib.listToAttrs (
-      map (p: {
-        name = ".claude/skills/${baseNameOf p}";
-        value.source = "${mattpocock-skills}/${lib.removePrefix "./" p}";
-      }) (builtins.fromJSON (builtins.readFile "${mattpocock-skills}/.claude-plugin/plugin.json")).skills
-    );
+  home.file = lib.listToAttrs (
+    map (p: {
+      name = ".claude/skills/${baseNameOf p}";
+      value.source = "${mattpocock-skills}/${lib.removePrefix "./" p}";
+    }) (builtins.fromJSON (builtins.readFile "${mattpocock-skills}/.claude-plugin/plugin.json")).skills
+  );
 
   home.packages = [
     (pkgs.aspellWithDicts (dicts: with dicts; [ en ]))
