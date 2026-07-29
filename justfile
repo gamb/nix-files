@@ -9,6 +9,8 @@ switch:
 
 update-lock:
   nix flake update
+  git add flake.lock
+  git commit -m "Update flake.lock" -- flake.lock
 
 expire:
   home-manager expire-generations "-30 days"
