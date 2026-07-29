@@ -18,6 +18,15 @@
     (add-to-list 'exec-path-from-shell-variables var))
   (exec-path-from-shell-initialize))
 
+;; Raycast launches the daemon with LC_ALL set to a Swift BCP-47 tag
+;; ("en-GB-u-ca-gregory-..."), which setlocale rejects, and with no LANG to fall
+;; back on -- so the daemon defaults to iso-latin-1 and prompts for a coding
+;; system every time a buffer picks up an em dash.
+(setenv "LC_ALL" "en_GB.UTF-8")
+(setenv "LANG" "en_GB.UTF-8")
+(set-locale-environment "en_GB.UTF-8")
+(prefer-coding-system 'utf-8-unix)
+
 (use-package emacs
   :custom
   (tool-bar-mode nil)
