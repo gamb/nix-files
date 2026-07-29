@@ -277,10 +277,13 @@
   ("M-o" . consult-buffer-other-window))
 
 (use-package agent-shell
-  :config
-  (require 'agent-shell-anthropic)
-  (setq agent-shell-anthropic-authentication
-        (agent-shell-anthropic-make-authentication :login t)))
+  :custom
+  (agent-shell-anthropic-authentication
+   (agent-shell-anthropic-make-authentication :login t))
+  (agent-shell-agent-configs
+   '(agent-shell-anthropic-make-claude-code-config
+     agent-shell-openai-make-codex-config
+     agent-shell-google-make-gemini-config)))
 
 (use-package move-dup
   :bind
