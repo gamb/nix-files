@@ -45,7 +45,7 @@
   :custom-face
   (mode-line ((t (:weight light :background "grey90" :box nil))))
   (mode-line-inactive ((t (:weight light :background "grey95" :box nil))))
-  (default ((t (:height 150 :weight demilight :family "Lilex"))))
+  (default ((t (:height 150 :family "Lilex"))))
   (fringe ((t (:background nil)))))
 
 (use-package ns-auto-titlebar
