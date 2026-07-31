@@ -12,7 +12,10 @@
 
   home.stateVersion = "25.05"; # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
 
-  home.file = lib.listToAttrs (
+  home.file = {
+    "CLAUDE.md".source = ../CLAUDE.md;
+  }
+  // lib.listToAttrs (
     map (p: {
       name = ".claude/skills/${baseNameOf p}";
       value.source = "${mattpocock-skills}/${lib.removePrefix "./" p}";
