@@ -30,6 +30,7 @@
     pkgs.entr
     pkgs.fd
     pkgs.fish
+    pkgs.git-absorb
     pkgs.jq
     pkgs.just
     pkgs.ledger
