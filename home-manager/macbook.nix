@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./agentsview.nix
     ./claude.nix
     ./emacs.nix
     ./fonts.nix
@@ -34,11 +33,6 @@
     pkgs.uiua
     pkgs.unzip
   ];
-
-  programs.agentsview = {
-    enable = true;
-    service.enable = true;
-  };
 
   programs.fish = {
     enable = true;
