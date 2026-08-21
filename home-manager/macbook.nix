@@ -16,6 +16,7 @@
     (pkgs.aspellWithDicts (dicts: with dicts; [ en ]))
     pkgs.bun
     pkgs.llm-agents.claude-agent-acp
+    pkgs.llm-agents.codex-acp
     pkgs.coreutils-prefixed
     pkgs.entr
     pkgs.fd
