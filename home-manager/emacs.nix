@@ -34,20 +34,7 @@ in
           };
           packageRequires = with epkgs; [ eglot ];
         })
-        (epkgs.trivialBuild {
-          pname = "agent-shell";
-          version = "unstable";
-          src = pkgs.fetchFromGitHub {
-            owner = "gamb";
-            repo = "agent-shell";
-            rev = "agent-shell-crit";
-            sha256 = "sha256-5weAHZUa/4lkY+ToUxyACBAVA6hkxnbMKNGtH6XObWY=";
-          };
-          packageRequires = with epkgs; [
-            acp
-            shell-maker
-          ];
-        })
+        agent-shell
         browse-kill-ring
         cape
         clojure-mode
