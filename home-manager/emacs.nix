@@ -21,7 +21,7 @@ in
 
   programs.emacs = {
     enable = true;
-    package = (pkgs.emacsPackagesFor pkgs.emacs).emacsWithPackages (
+    package = (pkgs.emacsPackagesFor pkgs.emacs-unstable).emacsWithPackages (
       epkgs: with epkgs; [
         (epkgs.trivialBuild {
           pname = "eglot-hierarchy";
