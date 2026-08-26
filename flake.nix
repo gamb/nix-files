@@ -29,15 +29,6 @@
           # packages against our nixpkgs and fails the npmDepsHash check on
           # nixos-25.11. See https://github.com/numtide/llm-agents.nix/issues/4320.
           (_final: _prev: { llm-agents = llm-agents.packages.${system}; })
-          # Workaround direnv issue, thanks to https://github.com/billimek/dotfiles/commit/eed207e535ec8d923ab7ccdec5d10972fe77d800
-          # via https://github.com/NixOS/nixpkgs/issues/507531
-          (_final: prev: {
-            fish = prev.fish.overrideAttrs (_old: {
-              # Bust the cache key so fish is always built locally rather than
-              # substituted from the binary cache where the signature may be stale.
-              NIX_FORCE_LOCAL_REBUILD = "darwin-codesign-fix";
-            });
-          })
         ];
       };
     in
