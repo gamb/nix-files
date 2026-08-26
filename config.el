@@ -290,17 +290,25 @@
   (:map move-dup-mode-map
 	("C-M-<up>")))
 
+(use-package window
+  :custom
+  (display-buffer-alist
+   '(((and (derived-mode . magit-status-mode)
+           (this-command . (magit-status
+                            magit-project-status
+                            project-switch-project)))
+      (display-buffer-full-frame))
+     ((and (derived-mode . org-agenda-mode)
+           (this-command . org-agenda))
+      (display-buffer-full-frame)))))
+
 (use-package magit
   :demand t
-  :after fullframe
+  :custom
+  (magit-bury-buffer-function #'magit-restore-window-configuration)
   :bind
   ((:map magit-blob-mode-map
-         ("<return>" . magit-blob-visit-file)))
-  :config
-  (fullframe magit-status magit-mode-quit-window)
-  (fullframe magit-project-status magit-mode-quit-window))
-
-(use-package fullframe)
+         ("<return>" . magit-blob-visit-file))))
 
 (use-package cider
   :custom
@@ -539,8 +547,7 @@ first occurance (not ARGth occurance)."
   ;; NB. since completion doesn't work within :custom macro, try using tempel templates
   :custom
   (org-agenda-files '("~/Documents/Pitch"))
-  :config
-  (fullframe org-agenda org-agenda-quit)
+  (org-agenda-restore-windows-after-quit t)
   :bind
   (("C-c a" . org-agenda)))
 

@@ -45,7 +45,6 @@ in
         exec-path-from-shell
         flymake
         focus
-        fullframe
         gptel
         hide-mode-line
         highlight-symbol
