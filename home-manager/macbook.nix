@@ -25,8 +25,8 @@
     pkgs.jq
     pkgs.just
     pkgs.ledger
-    pkgs.nixfmt-rfc-style
-    pkgs.nodePackages.prettier
+    pkgs.nixfmt
+    pkgs.prettier
     pkgs.ripgrep
     pkgs.sqlite
     pkgs.texlive.combined.scheme-basic

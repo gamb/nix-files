@@ -3,9 +3,9 @@
 
   inputs = {
     # Specify the source of Home Manager and Nixpkgs.
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
@@ -26,8 +26,8 @@
           emacs-overlay.overlays.default
           # Use llm-agents' prebuilt packages (built against its own newer
           # nixpkgs) rather than shared-nixpkgs, which rebuilds the npm
-          # packages against our nixpkgs and fails the npmDepsHash check on
-          # nixos-25.11. See https://github.com/numtide/llm-agents.nix/issues/4320.
+          # packages against our nixpkgs and fails the npmDepsHash check on our
+          # pinned nixpkgs. See https://github.com/numtide/llm-agents.nix/issues/4320.
           (_final: _prev: { llm-agents = llm-agents.packages.${system}; })
         ];
       };
