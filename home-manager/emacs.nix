@@ -15,7 +15,7 @@ in
   # instead of the generic one. Home Manager wraps these args in a
   # wait4path guard itself, so pass them plain like the upstream module.
   launchd.agents.emacs.config.ProgramArguments = lib.mkForce [
-    "${emacsPkg}/Applications/Emacs.app/Contents/MacOS/Emacs"
+    "${config.home.homeDirectory}/.nix-profile/Applications/Emacs.app/Contents/MacOS/Emacs"
     "--fg-daemon"
   ];
 
