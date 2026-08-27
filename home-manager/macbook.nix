@@ -37,6 +37,13 @@
 
   programs.fish = {
     enable = true;
+    # The nix installer writes /etc/fish/conf.d/nix.fish only when fish already
+    # exists. Fish arrived via home-manager after nix, so put nix on PATH here.
+    shellInit = ''
+      if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+          source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+      end
+    '';
   };
 
   programs.git = {
