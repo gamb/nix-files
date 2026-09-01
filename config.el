@@ -431,6 +431,8 @@
   ("C-x j" . justl-exec-recipe-in-dir))
 
 (use-package envrc
+  :custom
+  (envrc-async t)
   :config
   (envrc-global-mode))
 
